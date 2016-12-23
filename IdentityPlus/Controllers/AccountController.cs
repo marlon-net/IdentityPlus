@@ -153,7 +153,7 @@ namespace IdentityPlus.Controllers
             {
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email,
+                    UserName = model.UserName,
                     Email = model.Email,
                     Pessoa = new Pessoa()
                     {
