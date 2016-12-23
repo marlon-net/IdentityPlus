@@ -3,6 +3,11 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IdentityPlus.Models
 {
@@ -16,7 +21,26 @@ namespace IdentityPlus.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public virtual Pessoa Pessoa { get; set; }
     }
+
+    public class Pessoa
+    {
+        public int Id { get; set; }
+
+        [Required]
+        public string PrimeiroNome { get; set; }
+
+        [Required]
+        public string Sobrenome { get; set; }
+
+        public string NomeCompleto
+        {
+            get { return PrimeiroNome + " " + Sobrenome; }
+        }
+    }
+
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -29,5 +53,19 @@ namespace IdentityPlus.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<IdentityPlus.Models.Pessoa> Pessoas { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Change the name of the table to be Users instead of AspNetUsers
+            modelBuilder.Entity<IdentityUser>()
+                .ToTable("Users");
+            modelBuilder.Entity<ApplicationUser>()
+                .ToTable("Users");
+        }
+
     }
 }

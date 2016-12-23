@@ -49,9 +49,8 @@ namespace IdentityPlus.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,6 +63,12 @@ namespace IdentityPlus.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        public Pessoa Pessoa { get; set; }
+
+        [Required]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

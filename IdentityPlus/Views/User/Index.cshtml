@@ -1,0 +1,59 @@
+﻿@model IEnumerable<IdentityPlus.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h2>Lista de Usuários</h2>
+
+@*
+<p>
+    @Html.ActionLink("Novo item", "Create")
+</p>
+*@
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pessoa.NomeCompleto)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pessoa.NomeCompleto)
+            </td>
+            <td>
+                @* --- por enquanto vou limitar
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
+                *@
+            </td>
+        </tr>
+    }
+
+</table>
+
